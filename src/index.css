@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+/* ✅ 1. Declare theme custom variables */
+@theme {
+  --font-display: "Satoshi", sans-serif;
+
+  /* Breakpoints (Tailwind v4 doesn't define sm/md/lg by default) */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* Custom colors */
+  --color-avocado-100: oklch(0.99 0 0);
+  --color-avocado-200: oklch(0.98 0.04 113.22);
+  --color-avocado-300: oklch(0.94 0.11 115.03);
+  --color-avocado-400: oklch(0.92 0.19 114.08);
+  --color-avocado-500: oklch(0.84 0.18 117.33);
+  --color-avocado-600: oklch(0.53 0.12 118.34);
+
+  /* Easings */
+  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* ✅ 2. Reset & global styles */
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  color: white;
+  width: 100dvw;
+  height: 100%;
+  overflow-x: hidden;
+  background: #000;
+  border-color: #3b3b3b;
+  user-select: none;
+  font-family: var(--font-display);
+}
+
+canvas {
+  touch-action: none;
+}
+
+/* ✅ 3. Scrollbar hiding — use native CSS */
+.no-scrollbars {
+  scrollbar-width: none;
+}
+
+.no-scrollbars::-webkit-scrollbar {
+  display: none;
+}
+
+/* ✅ 4. Utility classes (manual definitions using @layer) */
+@layer utilities {
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .colorRed {
+    color: red;
+  }
+
+  .screen-max-width {
+    margin-inline: auto;
+    max-width: 1120px;
+    position: relative;
+  }
+
+  .nav-height {
+    height: calc(100vh - 60px);
+  }
+
+  .btn {
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    background-color: #3b82f6; /* blue-500 */
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    transition: all 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: transparent;
+    color: #3b82f6;
+    border: 1px solid #3b82f6;
+  }
+
+  .common-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .section-heading {
+    color: #d1d5db; /* gray-300 */
+    font-size: 1.875rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    opacity: 0;
+    transform: translateY(5rem);
+  }
+
+  .feature-text {
+    color: #d1d5db;
+    max-width: 28rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(6.25rem);
+  }
+
+  .feature-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2.5rem;
+    gap: 1.25rem;
+  }
+
+  .link {
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    color: #3b82f6;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(5rem);
+  }
+
+  .link:hover {
+    text-decoration: underline;
+  }
+
+  .hero-title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.875rem;
+    color: #f3f4f6; /* gray-100 */
+    opacity: 0;
+  }
+
+  .hiw-title {
+    font-size: 2.25rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .hiw-subtitle {
+    color: #d1d5db;
+    font-weight: 600;
+    font-size: 1.25rem;
+    text-align: center;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .hiw-bigtext {
+    color: white;
+    font-size: 1.875rem;
+    font-weight: 500;
+    margin: 0.5rem 0;
+  }
+
+  .g_fadeIn {
+    opacity: 0;
+    transform: translateY(6.25rem);
+  }
+
+  /* ✅ video carousel container added */
+  .video-carousel_container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .video-carousel_container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .video-carousel_container > * {
+    scroll-snap-align: center;
+    flex: 0 0 auto;
+  }
+}
+
+/* ✅ 5. Responsive tweaks using native media queries */
+@media (min-width: 640px) {
+  .common-padding {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
+  .section-heading {
+    font-size: 3rem;
+  }
+
+  .feature-text {
+    font-size: 1.25rem;
+  }
+
+  .feature-text-container {
+    flex-direction: row;
+    margin-top: 4rem;
+  }
+
+  .hiw-title {
+    font-size: 4.5rem;
+  }
+
+  .hiw-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .hiw-bigtext {
+    font-size: 3rem;
+  }
+}
